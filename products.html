@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalHealth Hub - Products</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>VitalHealth Hub</h1>
+        <img src="/images/logo.jpeg" alt="VitalHealth Hub Logo" class="logo">
+        <nav>
+            <ul>
+                <h1><li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </h1>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Our Products</h2>
+        <div id="product-list">
+            <div class="product">
+                <img src="/images/Dr. JOEL'S Immune Support Vitamin C.jpeg" alt="Vitamin C">
+                <h3>Dr. JOEL'S Immune Support Vitamin C</h3>
+                <p>$10.99</p>
+                <button class="add-to-cart" data-name="Vitamin C" data-price="10.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/NATURELO Burpless Omega 3 Fish Oil Supplement.jpeg" alt="Omega-3">
+                <h3>NATURELO Burpless Omega 3 Fish Oil Supplement</h3>
+                <p>$15.49</p>
+                <button class="add-to-cart" data-name="Omega-3" data-price="15.49">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Nutricost Whey Protein Powder.jpeg" alt="Protein Powder">
+                <h3>Nutricost Whey Protein Powder</h3>
+                <p>$29.99</p>
+                <button class="add-to-cart" data-name="Protein Powder" data-price="29.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/DAKE Vitamin Supplement..jpeg" alt="DAKE">
+                <h3>DAKE Vitamin Supplement</h3>
+                <p>$19.95</p>
+                <button class="add-to-cart" data-name="DAKE Supplement" data-price="19.95">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Superfood Fruit and Veggie Supplement.jpeg" alt="Superfood">
+                <h3>Superfood Fruit and Veggie Supplement</h3>
+                <p>$10.99</p>
+                <button class="add-to-cart" data-name="Fruit and Veggie Supplement" data-price="10.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/whole food multivitamin.jpeg" alt="Whole Food">
+                <h3>Whole Food Multivitamin</h3>
+                <p>$24.95</p>
+                <button class="add-to-cart" data-name="Whole Food Multivitamin" data-price="24.95">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/D3.jpeg" alt="Vitamin D3">
+                <h3>Nature Made Vitamin D3</h3>
+                <p>$16.99</p>
+                <button class="add-to-cart" data-name="Nature Made Vitamin D3" data-price="16.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Codeage Teen’s Daily .jpeg" alt="Codeage">
+                <h3>Codeage Teen's Daily Multivitamin Supplement</h3>
+                <p>$10.99</p>
+                <button class="add-to-cart" data-name="Codeage Teen's Daily Multivitamin Supplement" data-price="10.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/4-in-1 Calcium Supplements for Women and Men.jpeg" alt="4-in-1">
+                <h3>4-in-1 Calcium Supplements for Women and Men</h3>
+                <p>$12.99</p>
+                <button class="add-to-cart" data-name="4-in-1 Calcium Supplements for Women and Men" data-price="12.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Nature Made Vitamin E.jpeg" alt="Vitamin E">
+                <h3>Nature Made Vitamin E</h3>
+                <p>$10.99</p>
+                <button class="add-to-cart" data-name="Nature Made Vitamin E" data-price="10.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Vital Vitamins Multi Collagen Plus.jpeg" alt="Vital Vitamins">
+                <h3>Vital Vitamins Multi Collagen Plus</h3>
+                <p>$6.99</p>
+                <button class="add-to-cart" data-name="Vital Vitamins Multi Collagen Plus" data-price="6.99">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/Lithium Ascorbate 1 mg with Vitamin C - 60 Tablets.jpeg" alt="Lithium Ascorbate">
+                <h3>Lithium Ascorbate 1 mg with Vitamin C - 60 Tablets</h3>
+                <p>$19.98</p>
+                <button class="add-to-cart" data-name="Lithium Ascorbate 1 mg with Vitamin C" data-price="19.98">Add to Cart</button>
+            </div>
+        </div>
+
+        <h2>Shopping Cart</h2>
+        <p id="empty-cart-message">Your cart is empty.</p>
+        <ul id="cart-list"></ul>
+
+        <div id="cart-actions">
+            <button id="checkout">Checkout</button>
+            <button id="cancel">Cancel</button>
+            <button id="exit">Exit</button>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 VitalHealth Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartList = document.getElementById("cart-list");
+            const emptyCartMessage = document.getElementById("empty-cart-message");
+
+            function updateCartUI() {
+                cartList.innerHTML = "";
+                emptyCartMessage.style.display = cart.length === 0 ? "block" : "none";
+
+                cart.forEach((item, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `${item.product} - $${item.price.toFixed(2)} 
+                        <button class="remove-item" data-index="${index}">Remove</button>`;
+                    cartList.appendChild(li);
+                });
+            }
+
+            function addToCart(product, price) {
+                cart.push({ product, price: parseFloat(price) });
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartUI();
+                alert(`${product} added to cart!`);
+            }
+
+            function checkout() {
+                if (cart.length === 0) {
+                    alert("Your cart is empty!");
+                    return;
+                }
+                window.location.href = "invoice.html";
+            }
+
+            function clearCart() {
+                cart = [];
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartUI();
+                alert("Cart has been cleared.");
+            }
+
+            document.querySelectorAll(".add-to-cart").forEach(button => {
+                button.addEventListener("click", function () {
+                    const productName = this.getAttribute("data-name");
+                    const productPrice = this.getAttribute("data-price");
+                    addToCart(productName, productPrice);
+                });
+            });
+
+            document.getElementById("checkout").addEventListener("click", checkout);
+            document.getElementById("cancel").addEventListener("click", clearCart);
+            document.getElementById("exit").addEventListener("click", function () {
+                window.location.href = "index.html";
+            });
+
+            cartList.addEventListener("click", function (event) {
+                if (event.target.classList.contains("remove-item")) {
+                    const index = event.target.getAttribute("data-index");
+                    cart.splice(index, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartUI();
+                }
+            });
+
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>

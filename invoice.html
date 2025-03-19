@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalHealth Hub - Invoice</title>
+    <link rel="stylesheet" href="/style.css">
+  
+</head>
+<body>
+    <header>
+        <h1>VitalHealth Hub</h1>
+        <img src="/images/logo.jpeg" alt="VitalHealth Hub Logo" class="logo">
+        <nav>
+            <ul>
+                <h1><li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </h1>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Invoice</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-items">
+            </tbody>
+        </table>
+        <p class="invoice-summary" id="subtotal"></p>
+        <p class="invoice-summary" id="tax"></p>
+        <p class="invoice-summary" id="total"></p>
+
+        <div class="btn-group">
+            <button onclick="printInvoice()">Print Invoice</button>
+            <button onclick="window.location.href='products.html'">Back to Products</button>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 VitalHealth Hub. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let invoiceTable = document.getElementById("invoice-items");
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                invoiceTable.innerHTML = "<tr><td colspan='2'>No items in cart.</td></tr>";
+            } else {
+                cart.forEach(item => {
+                    let row = invoiceTable.insertRow();
+                    row.insertCell(0).textContent = item.product;
+                    row.insertCell(1).textContent = "$" + item.price.toFixed(2);
+                    subtotal += item.price;
+                });
+            }
+            
+            let tax = subtotal * 0.15;
+            let total = subtotal + tax;
+            
+            document.getElementById("subtotal").textContent = "Subtotal: $" + subtotal.toFixed(2);
+            document.getElementById("tax").textContent = "Tax (15%): $" + tax.toFixed(2);
+            document.getElementById("total").textContent = "Total: $" + total.toFixed(2);
+        });
+
+        function printInvoice() {
+            window.print();
+            localStorage.removeItem("cart"); 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalHealth Hub</title>
+    <link rel="stylesheet" href="/style.css">
+    <script defer src="/script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>VitalHealth Hub</h1>
+        <img src="/images/logo.jpeg" alt="VitalHealth Hub Logo" class="logo">
+        <nav>
+            <ul>
+                <h1><li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </h1>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Welcome to VitalHealth Hub</h2>
+        <p>Your trusted source for quality supplements, vitamins, and medications.</p>
+        <a href="products.html" class="btn">Shop Now</a>
+    </main>
+    
+    <section  id="login">
+        <center> <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required minlength="8">
+            
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMessage"></p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 VitalHealth Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
